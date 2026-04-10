@@ -23,6 +23,7 @@ export function useYouTube() {
   } = usePlayer();
 
   const onReady = useCallback(
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     (event: { target: any }) => {
       playerRef.current = event.target;
       playerRef.current.setVolume(muted ? 0 : volume);
