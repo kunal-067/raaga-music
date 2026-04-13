@@ -14,7 +14,6 @@ const YT_ENDED = 0;
 const YT_BUFFERING = 3;
 
 export function useYouTube() {
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const playerRef = useRef<any | null>(null);
   const intervalRef = useRef<NodeJS.Timeout | null>(null);
   const {
@@ -23,7 +22,7 @@ export function useYouTube() {
   } = usePlayer();
 
   const onReady = useCallback(
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+
     (event: { target: any }) => {
       playerRef.current = event.target;
       playerRef.current.setVolume(muted ? 0 : volume);
