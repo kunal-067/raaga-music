@@ -15,17 +15,21 @@ export interface Track {
 }
 
 export interface Playlist {
-  _id: string;
+  _id?: string;
+  id:string;
   name: string;
   description?: string;
   coverEmoji: string;
   coverImage?: string;
-  ownerId: string;
+  coverColor?:string,
+  ownerId?: string;
   isPublic: boolean;
-  trackIds: string[];
-  tracks?: Track[];
-  createdAt: string;
-  updatedAt: string;
+  isPinned?:boolean;
+
+  trackIds?: string[];
+  tracks: Track[];
+  createdAt: number;
+  updatedAt: number;
 }
 
 export interface User {

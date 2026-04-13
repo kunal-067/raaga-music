@@ -90,7 +90,7 @@ export const playlistSlice = createSlice({
         updatedAt: now,
       };
       state.playlists.unshift(newPlaylist);
-      state.activePlaylistId = newPlaylist.id;
+      state.activePlaylistId = newPlaylist.id || null;
     },
 
     updatePlaylist(
@@ -137,11 +137,12 @@ export const playlistSlice = createSlice({
     },
 
     // ── Track management ─────────────────────────
+    // edited by me id to -- youtubeid 
     addTrack(state, action: PayloadAction<{ playlistId: string; track: Track }>) {
       const { playlistId, track } = action.payload;
       const pl = state.playlists.find((p) => p.id === playlistId);
       if (!pl) return;
-      if (pl.tracks.some((t) => t.id === track.id)) return; // no duplicates
+      if (pl.tracks.some((t) => t.youtubeId === track.youtubeId)) return; // no duplicates
       pl.tracks.push(track);
       pl.updatedAt = Date.now();
     },
@@ -150,7 +151,7 @@ export const playlistSlice = createSlice({
       const { playlistId, trackId } = action.payload;
       const pl = state.playlists.find((p) => p.id === playlistId);
       if (!pl) return;
-      pl.tracks = pl.tracks.filter((t) => t.id !== trackId);
+      pl.tracks = pl.tracks.filter((t) => t.youtubeId !== trackId);
       pl.updatedAt = Date.now();
     },
 
@@ -158,9 +159,9 @@ export const playlistSlice = createSlice({
     toggleLikedTrack(state, action: PayloadAction<Track>) {
       const liked = state.playlists.find((p) => p.id === "liked-songs");
       if (!liked) return;
-      const exists = liked.tracks.some((t) => t.id === action.payload.id);
+      const exists = liked.tracks.some((t) => t.youtubeId === action.payload.youtubeId);
       if (exists) {
-        liked.tracks = liked.tracks.filter((t) => t.id !== action.payload.id);
+        liked.tracks = liked.tracks.filter((t) => t.youtubeId !== action.payload.youtubeId);
       } else {
         liked.tracks.unshift(action.payload);
       }
