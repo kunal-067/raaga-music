@@ -20,6 +20,8 @@ const SEED_PLAYLISTS: Playlist[] = [
     isPublic: false,
     isPinned: true,
     tracks: [],
+    trackIds:[],
+    
     createdAt: Date.now(),
     updatedAt: Date.now(),
   },
@@ -85,6 +87,7 @@ export const playlistSlice = createSlice({
         coverColor,
         isPublic: false,
         isPinned: false,
+        trackIds:[],
         tracks: [],
         createdAt: now,
         updatedAt: now,

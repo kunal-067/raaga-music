@@ -106,7 +106,7 @@ export function Sidebar({ session }: SidebarProps) {
               <div className="overflow-hidden">
                 <p className="text-sm font-medium truncate text-[var(--raaga-text)]">{pl.name}</p>
                 <p className="text-xs text-[var(--raaga-text3)] truncate">
-                  Playlist · {pl.trackIds.length} songs
+                  Playlist · {pl.trackIds?.length} songs
                 </p>
               </div>
             )}

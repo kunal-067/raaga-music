@@ -26,7 +26,7 @@ export interface Playlist {
   isPublic: boolean;
   isPinned?:boolean;
 
-  trackIds?: string[];
+  trackIds: string[];
   tracks: Track[];
   createdAt: number;
   updatedAt: number;
